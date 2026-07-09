@@ -1,0 +1,86 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.lightswitchField({
+    label: "Enable IP Protection"|t('ip-block-protection'),
+    id: "enabled",
+    name: "enabled",
+    on: settings.enabled,
+    instructions: "Screen front-end (site) visitors through ip-block.com."|t('ip-block-protection')
+}) }}
+
+{{ forms.textField({
+    label: "Site ID"|t('ip-block-protection'),
+    id: "siteId",
+    name: "siteId",
+    value: settings.siteId,
+    instructions: "Your 12-character ip-block.com site identifier."|t('ip-block-protection')
+}) }}
+
+{{ forms.textField({
+    label: "API Key"|t('ip-block-protection'),
+    id: "apiKey",
+    name: "apiKey",
+    type: "password",
+    value: settings.apiKey,
+    instructions: "Your 48-character API key. Tip: set to an env var, e.g. $IPBLOCK_API_KEY."|t('ip-block-protection')
+}) }}
+
+{{ forms.textField({
+    label: "API Endpoint URL"|t('ip-block-protection'),
+    id: "apiUrl",
+    name: "apiUrl",
+    value: settings.apiUrl
+}) }}
+
+{{ forms.lightswitchField({
+    label: "Fail open if service is unreachable"|t('ip-block-protection'),
+    id: "failOpen",
+    name: "failOpen",
+    on: settings.failOpen,
+    instructions: "On any error or timeout, allow the visitor (recommended) rather than block."|t('ip-block-protection')
+}) }}
+
+{{ forms.textField({
+    label: "Decision cache lifetime (seconds)"|t('ip-block-protection'),
+    id: "cacheTtl",
+    name: "cacheTtl",
+    type: "number",
+    value: settings.cacheTtl,
+    instructions: "0 = check every request."|t('ip-block-protection')
+}) }}
+
+{{ forms.lightswitchField({
+    label: "Behind a proxy / CDN"|t('ip-block-protection'),
+    id: "behindProxy",
+    name: "behindProxy",
+    on: settings.behindProxy,
+    instructions: "Read the real IP from CF-Connecting-IP / X-Forwarded-For."|t('ip-block-protection')
+}) }}
+
+{{ forms.selectField({
+    label: "When a visitor is blocked"|t('ip-block-protection'),
+    id: "blockAction",
+    name: "blockAction",
+    value: settings.blockAction,
+    options: [
+        { label: "Redirect to the ip-block.com block page"|t('ip-block-protection'), value: "redirect" },
+        { label: "Show a local block message (HTTP 403)"|t('ip-block-protection'), value: "message" }
+    ]
+}) }}
+
+{{ forms.textareaField({
+    label: "Block message"|t('ip-block-protection'),
+    id: "blockMessage",
+    name: "blockMessage",
+    value: settings.blockMessage,
+    rows: 2
+}) }}
+
+{{ forms.textareaField({
+    label: "Allowlisted IPs"|t('ip-block-protection'),
+    id: "whitelist",
+    name: "whitelist",
+    value: settings.whitelist,
+    rows: 4,
+    instructions: "One IP per line. These are never blocked (e.g. your own office IP)."|t('ip-block-protection')
+}) }}

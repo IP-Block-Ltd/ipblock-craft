@@ -1,0 +1,24 @@
+{
+    "name": "ipblock/craft-ip-block-protection",
+    "description": "IP Block protection for Craft CMS and Craft Commerce — integrates the ip-block.com IP screening service.",
+    "type": "craft-plugin",
+    "license": "GPL-3.0-or-later",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=8.2",
+        "craftcms/cms": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ipblock\\protection\\": "src/"
+        }
+    },
+    "extra": {
+        "handle": "ip-block-protection",
+        "name": "IP Block Protection",
+        "developer": "IP Block Ltd",
+        "developerUrl": "https://www.ip-block.com/",
+        "documentationUrl": "https://www.ip-block.com/docs/",
+        "class": "ipblock\\protection\\Plugin"
+    }
+}
